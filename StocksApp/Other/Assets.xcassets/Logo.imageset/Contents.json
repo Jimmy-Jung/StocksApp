@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "stockAppIcon.png",
+      "filename" : "stocks.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "stockAppIcon@2x.png",
+      "filename" : "stocks@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "stockAppIcon@3x.png",
+      "filename" : "stocks@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

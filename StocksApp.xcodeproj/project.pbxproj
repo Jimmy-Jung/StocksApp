@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5508CA3D29DD9418003673FE /* NewsStory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5508CA3C29DD9418003673FE /* NewsStory.swift */; };
 		55A2C92929D5C3F000C9E6EB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A2C92829D5C3F000C9E6EB /* AppDelegate.swift */; };
 		55A2C92B29D5C3F000C9E6EB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A2C92A29D5C3F000C9E6EB /* SceneDelegate.swift */; };
 		55A2C92D29D5C3F000C9E6EB /* WatchListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A2C92C29D5C3F000C9E6EB /* WatchListViewController.swift */; };
@@ -19,9 +20,19 @@
 		55A2C94C29DA9E2600C9E6EB /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A2C94B29DA9E2600C9E6EB /* Extensions.swift */; };
 		55A2C94E29DAA7A900C9E6EB /* SearchResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A2C94D29DAA7A900C9E6EB /* SearchResultTableViewCell.swift */; };
 		55A2C95029DB2D0900C9E6EB /* SearchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A2C94F29DB2D0800C9E6EB /* SearchResponse.swift */; };
+		55A2C95229DBD72600C9E6EB /* StockDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A2C95129DBD72600C9E6EB /* StockDetailsViewController.swift */; };
+		55A2C95729DBDE1300C9E6EB /* FloatingPanel in Frameworks */ = {isa = PBXBuildFile; productRef = 55A2C95629DBDE1300C9E6EB /* FloatingPanel */; };
+		55A2C95929DBE03300C9E6EB /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A2C95829DBE03300C9E6EB /* NewsViewController.swift */; };
+		55A2C95B29DBF88700C9E6EB /* NewsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A2C95A29DBF88700C9E6EB /* NewsHeaderView.swift */; };
+		55C7FBEE29DE97D800C3F776 /* NewsStoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C7FBED29DE97D800C3F776 /* NewsStoryTableViewCell.swift */; };
+		55C7FBF129DEAF0E00C3F776 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 55C7FBF029DEAF0E00C3F776 /* SDWebImage */; };
+		55C7FBF329DED9CC00C3F776 /* MarketDataResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C7FBF229DED9CC00C3F776 /* MarketDataResponse.swift */; };
+		55C7FBF529DFD79F00C3F776 /* WatchListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C7FBF429DFD79F00C3F776 /* WatchListTableViewCell.swift */; };
+		55C7FBF729DFD8FA00C3F776 /* StockChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C7FBF629DFD8FA00C3F776 /* StockChartView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5508CA3C29DD9418003673FE /* NewsStory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsStory.swift; sourceTree = "<group>"; };
 		55A2C92529D5C3F000C9E6EB /* StocksApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StocksApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		55A2C92829D5C3F000C9E6EB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		55A2C92A29D5C3F000C9E6EB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -36,6 +47,13 @@
 		55A2C94B29DA9E2600C9E6EB /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		55A2C94D29DAA7A900C9E6EB /* SearchResultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultTableViewCell.swift; sourceTree = "<group>"; };
 		55A2C94F29DB2D0800C9E6EB /* SearchResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResponse.swift; sourceTree = "<group>"; };
+		55A2C95129DBD72600C9E6EB /* StockDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockDetailsViewController.swift; sourceTree = "<group>"; };
+		55A2C95829DBE03300C9E6EB /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
+		55A2C95A29DBF88700C9E6EB /* NewsHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsHeaderView.swift; sourceTree = "<group>"; };
+		55C7FBED29DE97D800C3F776 /* NewsStoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsStoryTableViewCell.swift; sourceTree = "<group>"; };
+		55C7FBF229DED9CC00C3F776 /* MarketDataResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketDataResponse.swift; sourceTree = "<group>"; };
+		55C7FBF429DFD79F00C3F776 /* WatchListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchListTableViewCell.swift; sourceTree = "<group>"; };
+		55C7FBF629DFD8FA00C3F776 /* StockChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockChartView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +61,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				55C7FBF129DEAF0E00C3F776 /* SDWebImage in Frameworks */,
+				55A2C95729DBDE1300C9E6EB /* FloatingPanel in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,6 +103,10 @@
 			children = (
 				55A2C93329D5C3F200C9E6EB /* LaunchScreen.storyboard */,
 				55A2C94D29DAA7A900C9E6EB /* SearchResultTableViewCell.swift */,
+				55A2C95A29DBF88700C9E6EB /* NewsHeaderView.swift */,
+				55C7FBED29DE97D800C3F776 /* NewsStoryTableViewCell.swift */,
+				55C7FBF429DFD79F00C3F776 /* WatchListTableViewCell.swift */,
+				55C7FBF629DFD8FA00C3F776 /* StockChartView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -94,6 +118,8 @@
 				55A2C94329D5C9DB00C9E6EB /* PersistenceManager.swift */,
 				55A2C94529D5C9F600C9E6EB /* HapticsManager.swift */,
 				55A2C94F29DB2D0800C9E6EB /* SearchResponse.swift */,
+				5508CA3C29DD9418003673FE /* NewsStory.swift */,
+				55C7FBF229DED9CC00C3F776 /* MarketDataResponse.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -103,6 +129,8 @@
 			children = (
 				55A2C92C29D5C3F000C9E6EB /* WatchListViewController.swift */,
 				55A2C94929DA993700C9E6EB /* SearchResultViewController.swift */,
+				55A2C95129DBD72600C9E6EB /* StockDetailsViewController.swift */,
+				55A2C95829DBE03300C9E6EB /* NewsViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -141,6 +169,10 @@
 			dependencies = (
 			);
 			name = StocksApp;
+			packageProductDependencies = (
+				55A2C95629DBDE1300C9E6EB /* FloatingPanel */,
+				55C7FBF029DEAF0E00C3F776 /* SDWebImage */,
+			);
 			productName = StocksApp;
 			productReference = 55A2C92529D5C3F000C9E6EB /* StocksApp.app */;
 			productType = "com.apple.product-type.application";
@@ -169,6 +201,10 @@
 				Base,
 			);
 			mainGroup = 55A2C91C29D5C3F000C9E6EB;
+			packageReferences = (
+				55A2C95529DBDE1300C9E6EB /* XCRemoteSwiftPackageReference "FloatingPanel" */,
+				55C7FBEF29DEAF0E00C3F776 /* XCRemoteSwiftPackageReference "SDWebImage" */,
+			);
 			productRefGroup = 55A2C92629D5C3F000C9E6EB /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -195,15 +231,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				55C7FBF329DED9CC00C3F776 /* MarketDataResponse.swift in Sources */,
 				55A2C94629D5C9F600C9E6EB /* HapticsManager.swift in Sources */,
+				55A2C95929DBE03300C9E6EB /* NewsViewController.swift in Sources */,
 				55A2C94A29DA993700C9E6EB /* SearchResultViewController.swift in Sources */,
 				55A2C92D29D5C3F000C9E6EB /* WatchListViewController.swift in Sources */,
 				55A2C94C29DA9E2600C9E6EB /* Extensions.swift in Sources */,
 				55A2C94429D5C9DB00C9E6EB /* PersistenceManager.swift in Sources */,
+				5508CA3D29DD9418003673FE /* NewsStory.swift in Sources */,
+				55C7FBF729DFD8FA00C3F776 /* StockChartView.swift in Sources */,
+				55A2C95229DBD72600C9E6EB /* StockDetailsViewController.swift in Sources */,
+				55C7FBEE29DE97D800C3F776 /* NewsStoryTableViewCell.swift in Sources */,
 				55A2C92929D5C3F000C9E6EB /* AppDelegate.swift in Sources */,
 				55A2C95029DB2D0900C9E6EB /* SearchResponse.swift in Sources */,
+				55A2C95B29DBF88700C9E6EB /* NewsHeaderView.swift in Sources */,
 				55A2C92B29D5C3F000C9E6EB /* SceneDelegate.swift in Sources */,
 				55A2C94229D5C9BD00C9E6EB /* APICaller.swift in Sources */,
+				55C7FBF529DFD79F00C3F776 /* WatchListTableViewCell.swift in Sources */,
 				55A2C94E29DAA7A900C9E6EB /* SearchResultTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -414,6 +458,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		55A2C95529DBDE1300C9E6EB /* XCRemoteSwiftPackageReference "FloatingPanel" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/scenee/FloatingPanel.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+		55C7FBEF29DEAF0E00C3F776 /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImage.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		55A2C95629DBDE1300C9E6EB /* FloatingPanel */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 55A2C95529DBDE1300C9E6EB /* XCRemoteSwiftPackageReference "FloatingPanel" */;
+			productName = FloatingPanel;
+		};
+		55C7FBF029DEAF0E00C3F776 /* SDWebImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 55C7FBEF29DEAF0E00C3F776 /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			productName = SDWebImage;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 55A2C91D29D5C3F000C9E6EB /* Project object */;
 }

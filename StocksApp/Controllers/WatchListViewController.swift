@@ -6,10 +6,27 @@
 //
 
 import UIKit
+import FloatingPanel
 
 final class WatchListViewController: UIViewController {
+    static var maxChangeWidth: CGFloat = 0
     
     private var searchTimer: Timer?
+    private var panel: FloatingPanelController?
+    
+    /// Model
+    private var watchlistMap: [String: [CandleStick]] = [:]
+    
+    /// ViewModel
+    private var viewModels: [WatchListTableViewCell.ViewModel] = []
+    
+    private let tableView: UITableView = {
+        let table = UITableView()
+        table.register(WatchListTableViewCell.self,
+                       forCellReuseIdentifier: WatchListTableViewCell.identifier)
+        
+        return table
+    }()
 
     // MARK: - 라이프사이클
 
@@ -17,10 +34,105 @@ final class WatchListViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         setUpSearchController()
+        setUpTableView()
+        fetchWatchlistData()
+        setUpFloatingPanel()
         setUpTittleView()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        tableView.frame = view.bounds
     }
 
     // MARK: - 메서드
+    
+    private func fetchWatchlistData(){
+        let symbols = PersistenceManager.shared.watchlist
+        print(symbols)
+        
+        let group = DispatchGroup()
+        
+        for symbol in symbols {
+            group.enter()
+            
+            APICaller.shared.marketData(for: symbol) { [weak self] result in
+                defer {
+                    group.leave()
+                }
+                
+                switch result {
+                case .success(let data):
+                   self?.watchlistMap[symbol] = data.candleSticks
+                case .failure(let error):
+                    print(error)
+                }
+            }
+        }
+        group.notify(queue: .main) { [weak self] in
+            self?.createViewModels()
+            self?.tableView.reloadData()
+        }
+    }
+    
+    private func createViewModels() {
+        var viewModels = [WatchListTableViewCell.ViewModel]()
+        for (symbol, candleSticks) in watchlistMap {
+            let changePercentage = getChangePercentage(for: candleSticks)
+            viewModels.append(
+                .init(
+                    symbol: symbol,
+                    companyName: UserDefaults.standard.string(forKey: symbol) ?? "Company",
+                    price: getLastClosingPrice(from: candleSticks),
+                    changeColor: changePercentage < 0 ? .systemRed : .systemGreen,
+                    changePercentage: .percentage(from: changePercentage),
+                    chartViewModel: .init(
+                        data: candleSticks.reversed().map { $0.close },
+                        showLegend: false,
+                        showAxisBool: false
+                    )
+                )
+            )
+        }
+        
+        self.viewModels = viewModels
+        print(viewModels)
+    }
+    
+    private func getChangePercentage(for data: [CandleStick]) -> Double {
+        let priorDate = Date().addingTimeInterval(-(3600 * 24 * 2))
+        guard let latestClose = data.first?.close,
+                let priorClose = data.first(where: {
+                    Calendar.current.isDate($0.date, inSameDayAs: priorDate)
+                })?.close else {
+            return 0
+        }
+        
+        let diff = 1 - (priorClose/latestClose)
+        return diff
+    }
+    
+    private func getLastClosingPrice(from data: [CandleStick]) -> String {
+        guard let closingPrice = data.first?.close else {
+            return ""
+        }
+        return .formatted(number: closingPrice)
+    }
+    
+    private func setUpTableView() {
+        view.addSubview(tableView)
+        tableView.delegate = self
+        tableView.dataSource = self
+    }
+    
+    private func setUpFloatingPanel() {
+        let vc = NewsViewController(type: .topStories)
+        let panel = FloatingPanelController(delegate: self)
+        panel.surfaceView.backgroundColor = .secondarySystemBackground
+        panel.set(contentViewController: vc)
+        panel.addPanel(toParent: self)
+        panel.track(scrollView: vc.tableView)
+    }
 
     private func setUpSearchController() {
         let resultVC = SearchResultViewController()
@@ -37,7 +149,7 @@ final class WatchListViewController: UIViewController {
             frame: CGRect(
                 x: 0,
                 y: 0,
-                width: view.with,
+                width: view.width,
                 height: navigationController?.navigationBar.height ?? 100
             )
         )
@@ -45,7 +157,7 @@ final class WatchListViewController: UIViewController {
             frame: CGRect(
                 x: 10,
                 y: 0,
-                width: titleView.with - 20,
+                width: titleView.width - 20,
                 height: titleView.height
             )
         )
@@ -96,7 +208,50 @@ extension WatchListViewController: UISearchResultsUpdating {
 
 extension WatchListViewController: SearchResultsViewControllerDelegate {
     func SearchResultsViewControllerDidSelect(searchResult: SearchResult) {
-        //선택
-        print("Did select: \(searchResult.displaySymbol)")
+        //키보드 내려가기
+        navigationItem.searchController?.searchBar.resignFirstResponder()
+        
+        let vc = StockDetailsViewController()
+        let navVC = UINavigationController(rootViewController: vc)
+        vc.title = searchResult.description
+        present(navVC, animated: true)
+    }
+}
+
+extension WatchListViewController: FloatingPanelControllerDelegate {
+    func floatingPanelDidChangeState(_ fpc: FloatingPanelController) {
+        navigationItem.titleView?.isHidden = fpc.state == .full
+    }
+}
+
+extension WatchListViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return viewModels.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: WatchListTableViewCell.identifier, for: indexPath) as? WatchListTableViewCell else {
+            fatalError()
+        }
+        cell.delegate = self
+        cell.configure(with: viewModels[indexPath.row])
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return WatchListTableViewCell.preferredHeight
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        // Open Details for selection
+    }
+    
+}
+
+extension WatchListViewController: WatchListTableViewCellDelegate {
+    func didUpdateMaxWidth() {
+        tableView.reloadData()
     }
 }

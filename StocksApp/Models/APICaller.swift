@@ -10,10 +10,25 @@ import Foundation
 final class APICaller {
     static let shared = APICaller()
     
+    // MARK: - Models
+
     private struct Constants {
         static let apiKey = "cglg3opr01qrjukr60f0cglg3opr01qrjukr60fg"
         static let sandboxApiKey = ""
         static let baseUrl = "https://finnhub.io/api/v1/"
+        static let day: TimeInterval = 3600 * 24
+    }
+    
+    private enum Endpoint: String {
+        case search
+        case topStories = "news"
+        case companyNews = "company-news"
+        case marketData = "stock/candle"
+    }
+    
+    private enum APIError: Error {
+        case invalidUrl
+        case noDataReturn
     }
     
     private init() {}
@@ -39,18 +54,65 @@ final class APICaller {
         )
     }
     
+    public func news(
+        for type: NewsViewController.`Type`,
+        completion: @escaping (Result<[NewsStory], Error>) -> Void
+    ) {
+        switch type {
+        case .topStories:
+            request(
+                url: url(
+                    for: .topStories,
+                    queryParams: ["category": "general"]
+                ),
+                expecting: [NewsStory].self,
+                completion: completion
+            )
+        case .compan(symbol: let symbol):
+            let today = Date()
+            let oneMonthBack = today.addingTimeInterval(-(Constants.day * 7))
+            request(
+                url: url(for: .companyNews,
+                         queryParams: [
+                            "symbol": symbol,
+                            "from": DateFormatter.newsDateFormatter.string(from: oneMonthBack),
+                            "to": DateFormatter.newsDateFormatter.string(from: today)
+                         ]
+                        ),
+                expecting: [NewsStory].self,
+                completion: completion
+            )
+        }
+    }
+    
+    public func marketData(
+        for symbol: String,
+        numberOfDays: TimeInterval = 7,
+        completion: @escaping (Result<MarketDataResponse, Error>) -> Void
+    ) {
+        let today = Date().addingTimeInterval(-(Constants.day))
+        let prior = today.addingTimeInterval(-(Constants.day * numberOfDays))
+        let url = url(
+            for: .marketData,
+        queryParams: [
+            "symbol": symbol,
+            "resolution": "1",
+            "from": "\(Int(prior.timeIntervalSince1970))",
+            "to": "\(Int(today.timeIntervalSince1970))"
+        ]
+        )
+        request(
+            url: url,
+            expecting: MarketDataResponse.self,
+            completion: completion
+        )
+    }
+    
     // MARK: - get stock info
     // MARK: - search stock
     // MARK: - Private
     
-    private enum Endpoint: String {
-        case search
-    }
     
-    private enum APIError: Error {
-        case invalidUrl
-        case noDataReturn
-    }
 
     private func url(
         for endpoint: Endpoint,
