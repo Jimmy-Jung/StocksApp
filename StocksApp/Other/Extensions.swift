@@ -8,6 +8,11 @@
 import Foundation
 import UIKit
 
+// Notification
+extension Notification.Name {
+    static let didAddToWatchList = Notification.Name("didAddToWatchList")
+}
+
 // NumberFormatter
 extension NumberFormatter {
     static let percentFormatter: NumberFormatter = {
@@ -95,25 +100,32 @@ extension UIView {
 // MARK: - Fraiming
 
 extension UIView {
+    
+    /// 넓이
     var width: CGFloat {
         frame.size.width
     }
     
+    /// 높이
     var height: CGFloat {
         frame.size.height
     }
     
+    /// 왼쪽좌표
     var left: CGFloat {
         frame.origin.x
     }
     
+    /// 우측 좌표
     var right: CGFloat {
         left + width
     }
     
+    /// 탑 좌표
     var top: CGFloat {
         frame.origin.y
     }
+    /// 바닥 좌표
     var bottom: CGFloat {
         top + height
     }

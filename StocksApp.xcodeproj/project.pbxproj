@@ -24,11 +24,15 @@
 		55A2C95729DBDE1300C9E6EB /* FloatingPanel in Frameworks */ = {isa = PBXBuildFile; productRef = 55A2C95629DBDE1300C9E6EB /* FloatingPanel */; };
 		55A2C95929DBE03300C9E6EB /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A2C95829DBE03300C9E6EB /* NewsViewController.swift */; };
 		55A2C95B29DBF88700C9E6EB /* NewsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A2C95A29DBF88700C9E6EB /* NewsHeaderView.swift */; };
+		55A7E29F29E55C4400E87D19 /* Charts in Frameworks */ = {isa = PBXBuildFile; productRef = 55A7E29E29E55C4400E87D19 /* Charts */; };
 		55C7FBEE29DE97D800C3F776 /* NewsStoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C7FBED29DE97D800C3F776 /* NewsStoryTableViewCell.swift */; };
 		55C7FBF129DEAF0E00C3F776 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 55C7FBF029DEAF0E00C3F776 /* SDWebImage */; };
 		55C7FBF329DED9CC00C3F776 /* MarketDataResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C7FBF229DED9CC00C3F776 /* MarketDataResponse.swift */; };
 		55C7FBF529DFD79F00C3F776 /* WatchListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C7FBF429DFD79F00C3F776 /* WatchListTableViewCell.swift */; };
 		55C7FBF729DFD8FA00C3F776 /* StockChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C7FBF629DFD8FA00C3F776 /* StockChartView.swift */; };
+		55CAD94B29E52E970071F038 /* FinancialMetricsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CAD94A29E52E970071F038 /* FinancialMetricsResponse.swift */; };
+		55CAD94D29E533640071F038 /* StockDetailHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CAD94C29E533640071F038 /* StockDetailHeaderView.swift */; };
+		55CAD94F29E5395D0071F038 /* MetricCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CAD94E29E5395D0071F038 /* MetricCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +58,9 @@
 		55C7FBF229DED9CC00C3F776 /* MarketDataResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketDataResponse.swift; sourceTree = "<group>"; };
 		55C7FBF429DFD79F00C3F776 /* WatchListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchListTableViewCell.swift; sourceTree = "<group>"; };
 		55C7FBF629DFD8FA00C3F776 /* StockChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockChartView.swift; sourceTree = "<group>"; };
+		55CAD94A29E52E970071F038 /* FinancialMetricsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinancialMetricsResponse.swift; sourceTree = "<group>"; };
+		55CAD94C29E533640071F038 /* StockDetailHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockDetailHeaderView.swift; sourceTree = "<group>"; };
+		55CAD94E29E5395D0071F038 /* MetricCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetricCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +69,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				55C7FBF129DEAF0E00C3F776 /* SDWebImage in Frameworks */,
+				55A7E29F29E55C4400E87D19 /* Charts in Frameworks */,
 				55A2C95729DBDE1300C9E6EB /* FloatingPanel in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -74,6 +82,7 @@
 			children = (
 				55A2C92729D5C3F000C9E6EB /* StocksApp */,
 				55A2C92629D5C3F000C9E6EB /* Products */,
+				55A7E29A29E5595700E87D19 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -107,6 +116,8 @@
 				55C7FBED29DE97D800C3F776 /* NewsStoryTableViewCell.swift */,
 				55C7FBF429DFD79F00C3F776 /* WatchListTableViewCell.swift */,
 				55C7FBF629DFD8FA00C3F776 /* StockChartView.swift */,
+				55CAD94C29E533640071F038 /* StockDetailHeaderView.swift */,
+				55CAD94E29E5395D0071F038 /* MetricCollectionViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -120,6 +131,7 @@
 				55A2C94F29DB2D0800C9E6EB /* SearchResponse.swift */,
 				5508CA3C29DD9418003673FE /* NewsStory.swift */,
 				55C7FBF229DED9CC00C3F776 /* MarketDataResponse.swift */,
+				55CAD94A29E52E970071F038 /* FinancialMetricsResponse.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -153,6 +165,13 @@
 			path = Products;
 			sourceTree = "<group>";
 		};
+		55A7E29A29E5595700E87D19 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -172,6 +191,7 @@
 			packageProductDependencies = (
 				55A2C95629DBDE1300C9E6EB /* FloatingPanel */,
 				55C7FBF029DEAF0E00C3F776 /* SDWebImage */,
+				55A7E29E29E55C4400E87D19 /* Charts */,
 			);
 			productName = StocksApp;
 			productReference = 55A2C92529D5C3F000C9E6EB /* StocksApp.app */;
@@ -204,6 +224,7 @@
 			packageReferences = (
 				55A2C95529DBDE1300C9E6EB /* XCRemoteSwiftPackageReference "FloatingPanel" */,
 				55C7FBEF29DEAF0E00C3F776 /* XCRemoteSwiftPackageReference "SDWebImage" */,
+				55A7E29D29E55C4400E87D19 /* XCRemoteSwiftPackageReference "Charts" */,
 			);
 			productRefGroup = 55A2C92629D5C3F000C9E6EB /* Products */;
 			projectDirPath = "";
@@ -233,9 +254,11 @@
 			files = (
 				55C7FBF329DED9CC00C3F776 /* MarketDataResponse.swift in Sources */,
 				55A2C94629D5C9F600C9E6EB /* HapticsManager.swift in Sources */,
+				55CAD94F29E5395D0071F038 /* MetricCollectionViewCell.swift in Sources */,
 				55A2C95929DBE03300C9E6EB /* NewsViewController.swift in Sources */,
 				55A2C94A29DA993700C9E6EB /* SearchResultViewController.swift in Sources */,
 				55A2C92D29D5C3F000C9E6EB /* WatchListViewController.swift in Sources */,
+				55CAD94B29E52E970071F038 /* FinancialMetricsResponse.swift in Sources */,
 				55A2C94C29DA9E2600C9E6EB /* Extensions.swift in Sources */,
 				55A2C94429D5C9DB00C9E6EB /* PersistenceManager.swift in Sources */,
 				5508CA3D29DD9418003673FE /* NewsStory.swift in Sources */,
@@ -247,6 +270,7 @@
 				55A2C95B29DBF88700C9E6EB /* NewsHeaderView.swift in Sources */,
 				55A2C92B29D5C3F000C9E6EB /* SceneDelegate.swift in Sources */,
 				55A2C94229D5C9BD00C9E6EB /* APICaller.swift in Sources */,
+				55CAD94D29E533640071F038 /* StockDetailHeaderView.swift in Sources */,
 				55C7FBF529DFD79F00C3F776 /* WatchListTableViewCell.swift in Sources */,
 				55A2C94E29DAA7A900C9E6EB /* SearchResultTableViewCell.swift in Sources */,
 			);
@@ -470,6 +494,14 @@
 				minimumVersion = 2.0.0;
 			};
 		};
+		55A7E29D29E55C4400E87D19 /* XCRemoteSwiftPackageReference "Charts" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/corteggo/Charts.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		55C7FBEF29DEAF0E00C3F776 /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SDWebImage/SDWebImage.git";
@@ -485,6 +517,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 55A2C95529DBDE1300C9E6EB /* XCRemoteSwiftPackageReference "FloatingPanel" */;
 			productName = FloatingPanel;
+		};
+		55A7E29E29E55C4400E87D19 /* Charts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 55A7E29D29E55C4400E87D19 /* XCRemoteSwiftPackageReference "Charts" */;
+			productName = Charts;
 		};
 		55C7FBF029DEAF0E00C3F776 /* SDWebImage */ = {
 			isa = XCSwiftPackageProductDependency;

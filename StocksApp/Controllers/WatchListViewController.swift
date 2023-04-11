@@ -20,6 +20,8 @@ final class WatchListViewController: UIViewController {
     /// ViewModel
     private var viewModels: [WatchListTableViewCell.ViewModel] = []
     
+    private var observer: NSObjectProtocol?
+    
     private let tableView: UITableView = {
         let table = UITableView()
         table.register(WatchListTableViewCell.self,
@@ -38,6 +40,7 @@ final class WatchListViewController: UIViewController {
         fetchWatchlistData()
         setUpFloatingPanel()
         setUpTittleView()
+        setUpObserver()
     }
     
     override func viewDidLayoutSubviews() {
@@ -47,13 +50,23 @@ final class WatchListViewController: UIViewController {
 
     // MARK: - 메서드
     
+    private func setUpObserver() {
+        observer = NotificationCenter.default.addObserver(
+            forName: .didAddToWatchList,
+            object: nil,
+            queue: .main,
+            using: { [weak self] _ in
+                self?.viewModels.removeAll()
+                self?.fetchWatchlistData()
+            })
+    }
+    
     private func fetchWatchlistData(){
         let symbols = PersistenceManager.shared.watchlist
-        print(symbols)
         
         let group = DispatchGroup()
         
-        for symbol in symbols {
+        for symbol in symbols where watchlistMap[symbol] == nil {
             group.enter()
             
             APICaller.shared.marketData(for: symbol) { [weak self] result in
@@ -78,7 +91,7 @@ final class WatchListViewController: UIViewController {
     private func createViewModels() {
         var viewModels = [WatchListTableViewCell.ViewModel]()
         for (symbol, candleSticks) in watchlistMap {
-            let changePercentage = getChangePercentage(for: candleSticks)
+            let changePercentage = getChangePercentage(symbol: symbol, data: candleSticks)
             viewModels.append(
                 .init(
                     symbol: symbol,
@@ -89,21 +102,21 @@ final class WatchListViewController: UIViewController {
                     chartViewModel: .init(
                         data: candleSticks.reversed().map { $0.close },
                         showLegend: false,
-                        showAxisBool: false
+                        showAxisBool: false,
+                        fillColor: changePercentage < 0 ? .systemRed : .systemGreen
                     )
                 )
             )
         }
         
         self.viewModels = viewModels
-        print(viewModels)
     }
     
-    private func getChangePercentage(for data: [CandleStick]) -> Double {
-        let priorDate = Date().addingTimeInterval(-(3600 * 24 * 2))
+    private func getChangePercentage(symbol: String, data: [CandleStick]) -> Double {
+        let latestDate = data[0].date
         guard let latestClose = data.first?.close,
                 let priorClose = data.first(where: {
-                    Calendar.current.isDate($0.date, inSameDayAs: priorDate)
+                    !Calendar.current.isDate($0.date, inSameDayAs: latestDate)
                 })?.close else {
             return 0
         }
@@ -211,7 +224,10 @@ extension WatchListViewController: SearchResultsViewControllerDelegate {
         //키보드 내려가기
         navigationItem.searchController?.searchBar.resignFirstResponder()
         
-        let vc = StockDetailsViewController()
+        let vc = StockDetailsViewController(
+            symbol: searchResult.symbol,
+            companyName: searchResult.description
+        )
         let navVC = UINavigationController(rootViewController: vc)
         vc.title = searchResult.description
         present(navVC, animated: true)
@@ -265,6 +281,14 @@ extension WatchListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         // Open Details for selection
+        let viewModel = viewModels[indexPath.row]
+        let vc = StockDetailsViewController(
+            symbol: viewModel.symbol,
+            companyName: viewModel.companyName,
+            candleStickData: watchlistMap[viewModel.symbol] ?? []
+        )
+        let navVC = UINavigationController(rootViewController: vc)
+        present(navVC, animated: true)
     }
     
 }

@@ -24,6 +24,7 @@ final class APICaller {
         case topStories = "news"
         case companyNews = "company-news"
         case marketData = "stock/candle"
+        case financials = "stock/metric"
     }
     
     private enum APIError: Error {
@@ -35,6 +36,10 @@ final class APICaller {
     
     // MARK: - Public
     
+    /// Search company at API
+    /// - Parameters:
+    ///   - query: qasd
+    ///   - completion: callback closer
     public func search(
         query: String,
         completion: @escaping (Result<SearchResponse, Error>) -> Void
@@ -106,6 +111,19 @@ final class APICaller {
             expecting: MarketDataResponse.self,
             completion: completion
         )
+    }
+    
+    public func financialMetrics(
+        for symbol: String,
+        completion: @escaping (Result<FinancialMetricsResponse, Error>) -> Void
+    ) {
+        request(
+            url: url(
+                for: .financials,
+                queryParams: ["symbol" : symbol, "metric": "all"]
+            ),
+            expecting: FinancialMetricsResponse.self,
+            completion: completion)
     }
     
     // MARK: - get stock info
